@@ -8,7 +8,6 @@ const Features: React.FC<FeaturesProps> = ({
   onFeatureChange,
   error = false
 }) => {
-  console.log(error)
   const handleFeatureChange = (feature: string) => {
     const updatedFeatures = selectedFeatures.includes(feature)
       ? selectedFeatures.filter((feat) => feat !== feature)

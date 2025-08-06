@@ -1,24 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import RecommendationList from '../RecommendationList';
+import mockRecommendations from '../../../mocks/mockRecommendation';
 
 describe('RecommendationList Component', () => {
-  it('mostra mensagem quando não há recomendações', () => {
+  it('shows message when no recommendations are available', () => {
     render(<RecommendationList recommendations={[]} />);
     
     expect(screen.getByText(/nenhuma recomendação encontrada/i)).toBeInTheDocument();
   });
 
-  it('renderiza lista de recomendações', () => {
-    const mockRecommendations = [
-      { id: 1, name: 'Produto 1' },
-      { id: 2, name: 'Produto 2' },
-      { id: 3, name: 'Produto 3' },
-  ]  ;
+  it('renders recommendations list', () => {
 
     render(<RecommendationList recommendations={mockRecommendations} />);
 
     mockRecommendations.forEach((rec) => {
-      expect(screen.getByText(rec.name)).toBeInTheDocument();
+      expect(screen.getByText(new RegExp(rec.name, "i"))).toBeInTheDocument();
     });
 
     expect(screen.queryByText(/nenhuma recomendação encontrada/i)).toBeNull();

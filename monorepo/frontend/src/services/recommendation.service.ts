@@ -51,7 +51,6 @@ const getRecommendations = (
     return [];
   }
   
-  console.log('Scored Products:', scoredProducts);
   switch (selectedRecommendationType) {
     case "SingleProduct": {
       const topProducts = filterTopScoringProducts(scoredProducts);
