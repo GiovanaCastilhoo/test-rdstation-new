@@ -11,7 +11,7 @@ function App() {
   return (
   <div className="flex flex-col min-h-screen bg-gray-100">
       <Header />
-        <div className='mt-8'>
+        <div className='mt-8 px-4'>
             <h1 className="text-2xl font-bold text-center mb-4">
               Sistema de Recomendação de Produtos
             </h1>
