@@ -31,17 +31,6 @@ const getRecommendations = (
   products: Product[]
 ): Product[] => {
   const { selectedPreferences = [], selectedFeatures = [], selectedRecommendationType } = formData;
-  const noPreferences = !selectedPreferences.length;
-  const noFeatures = !selectedFeatures.length;
-
-  if (noPreferences && noFeatures) {
-    console.error("Nenhuma preferência ou funcionalidade selecionada.");
-    throw new Error('Por favor, preencha as preferências e as funcionalidades!');
-  }
-
-  if (!selectedRecommendationType) {
-    throw new Error("Selecione se deseja recomendar um produto ou vários produtos.");
-  }
 
   const selectedPrefSet = new Set(selectedPreferences);
   const selectedFeatSet = new Set(selectedFeatures);
@@ -55,8 +44,8 @@ const getRecommendations = (
     case "SingleProduct": {
       const topProducts = filterTopScoringProducts(scoredProducts);
       const result = topProducts.length
-      ? [topProducts[topProducts.length - 1].product] 
-      : [];
+        ? [topProducts[topProducts.length - 1].product]
+        : [];
       return result;
     }
     case "MultipleProducts": {
@@ -64,6 +53,8 @@ const getRecommendations = (
       const result = sorted.map(p => p.product);
       return result;
     }
+    default:
+      return []; 
   }
 };
 
