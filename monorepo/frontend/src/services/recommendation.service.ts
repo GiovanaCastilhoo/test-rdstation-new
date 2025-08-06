@@ -35,6 +35,7 @@ const getRecommendations = (
   const noFeatures = !selectedFeatures.length;
 
   if (noPreferences && noFeatures) {
+    console.error("Nenhuma preferência ou funcionalidade selecionada.");
     throw new Error('Por favor, preencha as preferências e as funcionalidades!');
   }
 

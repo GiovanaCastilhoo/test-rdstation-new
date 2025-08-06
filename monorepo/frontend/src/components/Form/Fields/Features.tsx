@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Checkbox from '../../shared/Checkbox';
 import { FeaturesProps } from '../../../types/product.types';
 
@@ -6,18 +6,16 @@ const Features: React.FC<FeaturesProps> = ({
   features,
   selectedFeatures = [],
   onFeatureChange,
+  error = false
 }) => {
-  const [currentFeatures, setCurrentFeatures] = useState<string[]>(selectedFeatures);
-
+  console.log(error)
   const handleFeatureChange = (feature: string) => {
-    const updatedFeatures = currentFeatures.includes(feature)
-      ? currentFeatures.filter((pref) => pref !== feature)
-      : [...currentFeatures, feature];
+    const updatedFeatures = selectedFeatures.includes(feature)
+      ? selectedFeatures.filter((feat) => feat !== feature)
+      : [...selectedFeatures, feature];
 
-    setCurrentFeatures(updatedFeatures);
     onFeatureChange(updatedFeatures);
   };
-
   return (
     <div className="mb-4">
       <h2 className="text-lg font-bold mb-2">Funcionalidades:</h2>
@@ -26,9 +24,9 @@ const Features: React.FC<FeaturesProps> = ({
           <li key={index} className="mb-2">
             <Checkbox
               value={feature}
-              checked={currentFeatures.includes(feature)}
+              checked={selectedFeatures.includes(feature)}
               onChange={() => handleFeatureChange(feature)}
-              className="text-green-500"
+              error={error}
             >
               {feature}
             </Checkbox>

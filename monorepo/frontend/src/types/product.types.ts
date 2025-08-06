@@ -12,18 +12,19 @@ export type ScoredProduct = {
   score: number;
 };
 
-export type RecommendationType = "SingleProduct" | "MultipleProducts";
+export type RecommendationType = "SingleProduct" | "MultipleProducts" ;
 
 export interface FormData {
-  selectedPreferences?: string[];
-  selectedFeatures?: string[];
+  selectedPreferences: string[];
+  selectedFeatures: string[];
   selectedRecommendationType?: RecommendationType;
 };
 
 export interface FeaturesProps {
   features: string[];
   selectedFeatures?: string[];
-  onFeatureChange: (updatedFeatures: string[]) => void;
+  onFeatureChange: (features: string[]) => void;
+  error?: boolean;
 }
 
 
@@ -31,5 +32,6 @@ export interface PreferencesProps {
   preferences: string[];
   selectedPreferences?: string[];
   onPreferenceChange: (updatedPreferences: string[]) => void;
+  error?: boolean;
 }
 

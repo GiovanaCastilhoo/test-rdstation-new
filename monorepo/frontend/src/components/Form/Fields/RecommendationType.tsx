@@ -2,10 +2,16 @@ import React from 'react';
 import Checkbox from '../../shared/Checkbox';
 
 interface RecommendationTypeProps {
+  selectedRecommendationType?: 'SingleProduct' | 'MultipleProducts';
   onRecommendationTypeChange: (type: 'SingleProduct' | 'MultipleProducts') => void;
+  error?: boolean;
 }
 
-const RecommendationType: React.FC<RecommendationTypeProps> = ({ onRecommendationTypeChange }) => {
+const RecommendationType: React.FC<RecommendationTypeProps> = ({
+  selectedRecommendationType,
+  onRecommendationTypeChange,
+  error,
+}) => {
   return (
     <div className="mb-4">
       <div className="flex items-center">
@@ -13,19 +19,27 @@ const RecommendationType: React.FC<RecommendationTypeProps> = ({ onRecommendatio
           type="radio"
           name="recommendationType"
           value="SingleProduct"
+          checked={selectedRecommendationType === 'SingleProduct'}
           onChange={() => onRecommendationTypeChange('SingleProduct')}
-          className="mr-2"
+          className={`mr-2 ${error ? 'border-red-500' : ''}`}
         />
-        <label htmlFor="SingleProduct" className="mr-4">Produto Único</label>
+        <label htmlFor="SingleProduct" className="mr-4 cursor-pointer">
+          Produto Único
+        </label>
+
         <Checkbox
           type="radio"
           name="recommendationType"
           value="MultipleProducts"
+          checked={selectedRecommendationType === 'MultipleProducts'}
           onChange={() => onRecommendationTypeChange('MultipleProducts')}
-          className="mr-2"
+          className={`mr-2 ${error ? 'border-red-500' : ''}`}
         />
-        <label htmlFor="MultipleProducts">Múltiplos Produtos</label>
+        <label htmlFor="MultipleProducts" className="cursor-pointer">
+          Múltiplos Produtos
+        </label>
       </div>
+      {error}
     </div>
   );
 };

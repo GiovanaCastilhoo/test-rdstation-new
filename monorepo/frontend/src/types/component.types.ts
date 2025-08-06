@@ -3,6 +3,7 @@ import { Product } from "./product.types";
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   children?: ReactNode;
+  error?: boolean;
 }
 
 export interface FormProps {

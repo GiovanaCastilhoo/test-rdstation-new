@@ -7,6 +7,7 @@ const Preferences: React.FC<PreferencesProps> = ({
   preferences,
   selectedPreferences = [],
   onPreferenceChange,
+  error = false,
 }) => {
   const [currentPreferences, setCurrentPreferences] = useState<string[]>(selectedPreferences);
 
@@ -30,7 +31,7 @@ const Preferences: React.FC<PreferencesProps> = ({
               value={preference}
               checked={currentPreferences.includes(preference)}
               onChange={() => handlePreferenceChange(preference)}
-              className="text-blue-500"
+              error={error}
             >
               {preference}
             </Checkbox>
